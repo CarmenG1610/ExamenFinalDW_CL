@@ -2,9 +2,6 @@ from django.shortcuts import render, redirect, get_object_or_404
 from .models import Categoria, Producto
 from .forms import CategoriaForm, ProductoForm
 
-# --------------------------
-# CATEGORÍAS - CRUD
-# --------------------------
 
 def lista_categorias(request):
     categorias = Categoria.objects.all()
@@ -33,16 +30,10 @@ def eliminar_categoria(request, id):
     categoria.delete()
     return redirect('lista_categorias')
 
-
-# --------------------------
-# PRODUCTOS - CRUD
-# --------------------------
-# LISTADO
 def lista_productos(request):
     productos = Producto.objects.all()
     return render(request, 'productos/lista.html', {'productos': productos})
 
-# CREAR
 def crear_producto(request):
     if request.method == 'POST':
         form = ProductoForm(request.POST)
@@ -53,7 +44,7 @@ def crear_producto(request):
         form = ProductoForm()
     return render(request, 'productos/form.html', {'form': form})
 
-# EDITAR
+
 def editar_producto(request, id):
     producto = get_object_or_404(Producto, id=id)
     if request.method == 'POST':
@@ -65,7 +56,7 @@ def editar_producto(request, id):
         form = ProductoForm(instance=producto)
     return render(request, 'productos/form.html', {'form': form})
 
-# ELIMINAR
+
 def eliminar_producto(request, id):
     producto = get_object_or_404(Producto, id=id)
     producto.delete()
