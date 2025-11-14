@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Formulario Categoría{% endblock %}
+
+{% block content %}
+<h2 class="text-primary mb-4">Formulario Categoría</h2>
+
+<form method="POST">
+    {% csrf_token %}
+
+    <div class="mb-3">
+        <label class="form-label">Nombre:</label>
+        {{ form.nombre }}
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label">Descripción:</label>
+        {{ form.descripcion }}
+    </div>
+
+    <button type="submit" class="btn btn-primary">Guardar</button>
+    <a href="{% url 'categorias_listado' %}" class="btn btn-secondary">Cancelar</a>
+</form>
+{% endblock %}
